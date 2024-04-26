@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45260da68e207ae4293f4408779122de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointPrefab: {fileID: 3047006675375936561, guid: aba72d591e48891428fb84f8ad19cd78, type: 3}
+  pointPrefab: {fileID: 657197157670850119, guid: cac1a4d20c46f1a4ca201a86579ad8af, type: 3}
   resolution: 100
   function: 1
 --- !u!4 &902328971

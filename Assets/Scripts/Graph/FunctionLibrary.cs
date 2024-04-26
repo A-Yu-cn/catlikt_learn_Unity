@@ -2,32 +2,66 @@
 using static UnityEngine.Mathf;
 public static class FunctionLibrary {
 
-    public static float Wave(float x, float z, float t) {
-        return Sin(PI * (x + t));
-        // return Mathf.Sin(Mathf.PI * (x + t));  使用了using static UnityEngine.Mathf; 无需显式说明方法和变量的类型
-    }
-
-    public static float MultiWave(float x, float z, float t)
+    public static Vector3 Wave(float u, float v, float t)
     {
-        float y = Sin(PI * (x + 0.5f * t));
-        // y += Sin(2f * PI * (x + t)) / 2f;
-        // return y / 1.5f;    // 使用除法在复杂计算的地方开销比乘法大，而简单的 1f/2f这样的常量表达式可以编译简化，而2/3无法十进制表示因此还是保持除法形式让编译器优化
-        y += Sin(2f * PI * (x + t)) * (1f / 2f);
-        return y * (2f / 3f);
+        Vector3 p;
+        p.x = u;
+        p.y = Sin(PI * (u + v + t));
+        p.z = v;
+        return p;
     }
 
-    public static float Ripple(float x, float z, float t)
-    {
-        float d = Abs(x);
-        float y = Sin(4f * PI * d - t);
-        return y / (1f + 10f * d);
-    }
+	public static Vector3 MultiWave(float u, float v, float t)
+	{
+		Vector3 p;
+		p.x = u;
+		p.y = Sin(PI * (u + 0.5f * t));
+		p.y += 0.5f * Sin(2f * PI * (v + t));
+		p.y += Sin(PI * (u + v + 0.25f * t));
+		p.y *= 1f / 2.5f;
+		p.z = v;
+		return p;
+	}
 
-    public delegate float Function(float x, float z, float t);
+	public static Vector3 Ripple(float u, float v, float t)
+	{
+		float d = Sqrt(u * u + v * v);
+		Vector3 p;
+		p.x = u;
+		p.y = Sin(PI * (4f * d - t));
+		p.y /= 1f + 10f * d;
+		p.z = v;
+		return p;
+	}
 
-    public enum FunctionName { Wave, MultiWave, Ripple }
+	public static Vector3 Sphere(float u, float v, float t)
+	{
+		float r = 0.9f + 0.1f * Sin(PI * (6f * u + 4f * v + t));
+		float s = r * Cos(0.5f * PI * v);
+		Vector3 p;
+		p.x = s * Sin(PI * u);
+		p.y = r * Sin(0.5f * PI * v);
+		p.z = s * Cos(PI * u);
+		return p;
+	}
+
+	public static Vector3 Torus(float u, float v, float t)
+	{
+		float r1 = 0.7f + 0.1f * Sin(PI * (6f * u + 0.5f * t));
+		float r2 = 0.15f + 0.05f * Sin(PI * (8f * u + 4f * v + 2f * t));
+		float s = r1 + r2 * Cos(PI * v);
+		Vector3 p;
+		p.x = s * Sin(PI * u);
+		p.y = r2 * Sin(PI * v);
+		p.z = s * Cos(PI * u);
+		return p;
+	}
+
+	public delegate Vector3 Function(float u, float v, float t);
+
+    public enum FunctionName { Wave, MultiWave, Ripple, Sphere, Torus }
     
-    static Function[] functions = { Wave, MultiWave, Ripple };
+    static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus };
 
     public static Function GetFunction(FunctionName name)
     {
