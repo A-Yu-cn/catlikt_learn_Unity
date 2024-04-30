@@ -63,22 +63,10 @@ public static class FunctionLibrary {
     
     static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus };
 
-    public static Function GetFunction(FunctionName name)
-    {
-        return functions[(int)name];
-    }
+	public static Function GetFunction(FunctionName name) => functions[(int)name];
 
-	public static FunctionName GetNextFunctionName(FunctionName name)
-	{
-		if ((int)name < functions.Length - 1)
-		{
-			return name + 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
+	public static FunctionName GetNextFunctionName(FunctionName name) =>
+		(int)name < functions.Length - 1 ? name + 1 : 0;
 	public static FunctionName GetRandomFunctionNameOtherThan(FunctionName name)
 	{
 		var choice = (FunctionName)Random.Range(1, functions.Length);
@@ -90,5 +78,5 @@ public static class FunctionLibrary {
 	{
 		return Vector3.LerpUnclamped(from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress));
 	}
-
+	public static int FunctionCount => functions.Length;
 }
