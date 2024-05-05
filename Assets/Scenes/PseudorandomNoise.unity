@@ -270,6 +270,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf658e0bfda80246985546c90591098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  domain:
+    translation:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      x: 0
+      y: 30
+      z: 0
+    scale:
+      x: 8
+      y: 8
+      z: 8
+  shape: 0
+  seed: 0
+  displacement: 0.1
   instanceMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 96622b9f3e1940148a7ab4b59b2255d8, type: 2}
   resolution: 64
