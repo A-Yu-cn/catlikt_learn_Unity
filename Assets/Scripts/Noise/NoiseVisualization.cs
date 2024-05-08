@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 using static Unity.Mathematics.math;
-
+using static Noise;
 public class NoiseVisualization : Visualization
 {
 	static int noiseId = Shader.PropertyToID("_Noise");
@@ -16,6 +16,15 @@ public class NoiseVisualization : Visualization
 	SpaceTRS domain = new SpaceTRS{
 		scale = 8f
 	};
+
+	static ScheduleDelegate[] noiseJobs = {
+		Job<Lattice1D>.ScheduleParallel,
+		Job<Lattice2D>.ScheduleParallel,
+		Job<Lattice3D>.ScheduleParallel
+	};
+
+	[SerializeField, Range(1, 3)]
+	int dimensions = 3;
 
 	NativeArray<float4> noise;
 
@@ -40,7 +49,9 @@ public class NoiseVisualization : Visualization
 		NativeArray<float3x4> positions, int resolution, JobHandle handle
 	)
 	{
-		handle.Complete();
+		noiseJobs[dimensions - 1](
+			positions, noise, seed, domain, resolution, handle
+		).Complete();
 		noiseBuffer.SetData(noise.Reinterpret<float>(4 * 4));
 	}
 

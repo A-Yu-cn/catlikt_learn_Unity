@@ -8,24 +8,6 @@ using static Unity.Mathematics.math;
 
 public abstract class Visualization : MonoBehaviour
 {
-
-	[System.Serializable]
-	public struct SpaceTRS
-	{
-
-		public float3 translation, rotation, scale;
-		public float3x4 Matrix
-		{
-			get
-			{
-				float4x4 m = Unity.Mathematics.float4x4.TRS(
-					translation, Unity.Mathematics.quaternion.EulerZXY(radians(rotation)), scale
-				);
-				return math.float3x4(m.c0.xyz, m.c1.xyz, m.c2.xyz, m.c3.xyz);
-			}
-		}
-	}
-
 	public enum Shape { Plane, Sphere, Torus }
 
 	static Shapes.ScheduleDelegate[] shapeJobs = {
