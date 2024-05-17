@@ -17,6 +17,7 @@ namespace ProceduralMeshes.Generators
 
 		public Bounds Bounds => new Bounds(Vector3.zero, new Vector3(1f, 0f, 1f));
 
+		
 		public void Execute<S>(int z, S streams) where S : struct, IMeshStreams
 		{
 			int vi = 4 * Resolution * z, ti = 2 * Resolution * z;
@@ -24,7 +25,7 @@ namespace ProceduralMeshes.Generators
 			//int z = i / Resolution;
 			//int x = i - Resolution * z;
 			for (int x = 0; x < Resolution; x++, vi += 4, ti += 2)
-			{
+			{	
 				var vertex = new Vertex();
 				vertex.normal.y = 1f;
 				vertex.tangent.xw = float2(1f, -1f);
