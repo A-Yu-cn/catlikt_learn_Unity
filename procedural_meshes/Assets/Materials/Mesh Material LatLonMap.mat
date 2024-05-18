@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mesh Material
+  m_Name: Mesh Material LatLonMap
   m_Shader: {fileID: -6465566751694194690, guid: eca9d22bba935fb46b7a5605e3ab1c79, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - BOOLEAN_F80EBC65F0AB421D809F01C6BB883B11_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _NORMALMAP
   m_LightmapFlags: 4
@@ -26,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_64863979d0a04516b76ebc045f4e950d:
-        m_Texture: {fileID: 2800000, guid: 32acdc04b1b8b014ab07793c67fd7522, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0a0ed9d10841134cb0ddeab6ce550fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_f9cbc82e8fd643d7b45e41af7283cd8a:
-        m_Texture: {fileID: 2800000, guid: c9aca7cfc73c1ff48999900f26a81d66, type: 3}
+        m_Texture: {fileID: 2800000, guid: e527408bf74660249a42459e73110577, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -91,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - BOOLEAN_F80EBC65F0AB421D809F01C6BB883B11: 1
+    - BOOLEAN_F80EBC65F0AB421D809F01C6BB883B11: 0
     - Vector1_731a43ae15b643faaedb86124bec211c: 0.1
     - Vector1_c9911840fdc349dfad0a73485154a541: 2
     - Vector1_de2cdd9b42fd447cbea63b1fdfa458ef: 0.1

@@ -368,8 +368,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21246e4f516ca7d4b9f1a1778cb1f13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: 0
+  materials:
+  - {fileID: 2100000, guid: 14a632c018566734fb179d062f611037, type: 2}
+  - {fileID: 2100000, guid: 0ff11ca577118124bb7cb4732a33733f, type: 2}
+  - {fileID: 2100000, guid: d31b30a323dc09f48bdc810f57ffbb38, type: 2}
+  - {fileID: 2100000, guid: 3dd818ce281d9c24ca6b43f2ef767d40, type: 2}
   meshType: 0
   resolution: 1
+  gizmos: 0
 --- !u!23 &959176060
 MeshRenderer:
   m_ObjectHideFlags: 0
