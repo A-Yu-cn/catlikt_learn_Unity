@@ -375,6 +375,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d31b30a323dc09f48bdc810f57ffbb38, type: 2}
   - {fileID: 2100000, guid: 3dd818ce281d9c24ca6b43f2ef767d40, type: 2}
   meshType: 0
+  meshOptimization: 0
   resolution: 1
   gizmos: 0
 --- !u!23 &959176060
@@ -397,7 +398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14a632c018566734fb179d062f611037, type: 2}
+  - {fileID: 2100000, guid: 3dd818ce281d9c24ca6b43f2ef767d40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
