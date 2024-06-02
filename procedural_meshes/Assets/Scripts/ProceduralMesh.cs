@@ -3,7 +3,6 @@ using ProceduralMeshes.Generators;
 using ProceduralMeshes.Streams;
 using UnityEngine;
 using UnityEngine.Rendering;
-using System.Collections;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ProceduralMesh : MonoBehaviour {
@@ -29,17 +28,23 @@ public class ProceduralMesh : MonoBehaviour {
 	static MeshJobScheduleDelegate[] jobs = {
 		MeshJob<SquareGrid, SingleStream>.ScheduleParallel,
 		MeshJob<SharedSquareGrid, SingleStream>.ScheduleParallel,
-		MeshJob<SharedTringleGrid, SingleStream>.ScheduleParallel,
-		MeshJob<PointHexagonGrid, SingleStream>.ScheduleParallel,
+		MeshJob<SharedTriangleGrid, SingleStream>.ScheduleParallel,
 		MeshJob<FlatHexagonGrid, SingleStream>.ScheduleParallel,
+		MeshJob<PointyHexagonGrid, SingleStream>.ScheduleParallel,
 		MeshJob<CubeSphere, SingleStream>.ScheduleParallel,
 		MeshJob<SharedCubeSphere, PositionStream>.ScheduleParallel,
-		MeshJob<UVSphere, SingleStream>.ScheduleParallel,
+		MeshJob<Icosphere, PositionStream>.ScheduleParallel,
+		MeshJob<GeoIcosphere, PositionStream>.ScheduleParallel,
+		MeshJob<Octasphere, SingleStream>.ScheduleParallel,
+		MeshJob<GeoOctasphere, SingleStream>.ScheduleParallel,
+		MeshJob<UVSphere, SingleStream>.ScheduleParallel
 	};
 
 	public enum MeshType
 	{
-		SquareGrid, SharedSquareGrid, SharedTringleGrid, SharedHexagonGrid, FlatHexagonGrid, CubeSphere, SharedCubeSphere, UVSphere
+		SquareGrid, SharedSquareGrid, SharedTriangleGrid,
+		FlatHexagonGrid, PointyHexagonGrid, CubeSphere, SharedCubeSphere,
+		Icosphere, GeoIcosphere, Octasphere, GeoOctasphere, UVSphere
 	};
 
 	[SerializeField]
@@ -86,6 +91,19 @@ public class ProceduralMesh : MonoBehaviour {
 		jobs[(int)meshType](mesh, meshData, resolution, default).Complete();
 
 		Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, mesh);
+
+		if (meshOptimization == MeshOptimizationMode.ReorderIndices)
+		{
+			mesh.OptimizeIndexBuffers();
+		}
+		else if (meshOptimization == MeshOptimizationMode.ReorderVertices)
+		{
+			mesh.OptimizeReorderVertexBuffer();
+		}
+		else if (meshOptimization != MeshOptimizationMode.Nothing)
+		{
+			mesh.Optimize();
+		}
 	}
 
 	void Update()
@@ -96,6 +114,8 @@ public class ProceduralMesh : MonoBehaviour {
 		vertices = null;
 		normals = null;
 		tangents = null;
+		triangles = null;
+
 		GetComponent<MeshRenderer>().material = materials[(int)material];
 	}
 

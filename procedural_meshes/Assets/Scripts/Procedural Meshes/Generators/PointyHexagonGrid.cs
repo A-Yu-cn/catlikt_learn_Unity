@@ -6,7 +6,7 @@ using static Unity.Mathematics.math;
 namespace ProceduralMeshes.Generators
 {
 
-	public struct PointHexagonGrid : IMeshGenerator
+	public struct PointyHexagonGrid : IMeshGenerator
 	{
 
 		public int Resolution { get; set; }

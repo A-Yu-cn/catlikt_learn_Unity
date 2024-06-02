@@ -6,7 +6,7 @@ using static Unity.Mathematics.math;
 namespace ProceduralMeshes.Generators
 {
 
-	public struct SharedTringleGrid : IMeshGenerator
+	public struct SharedTriangleGrid : IMeshGenerator
 	{
 
 		public int Resolution { get; set; }
